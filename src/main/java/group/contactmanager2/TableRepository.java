@@ -1,35 +1,25 @@
 package group.contactmanager2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 @Repository
 public class TableRepository {
     @Autowired
     private static Connection connection;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public void create(){
-        Connection con = getConnection();
-        try (Statement statement = con.createStatement()){
-            String sql ="create table if not exists contact_manager " +
-                    "(name varchar(15) not null, " +
-                    "surname varchar(15), " +
-                    "phone varchar(12) unique not null)";
-            statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static Connection getConnection(){
-        try {
-            if(connection==null)
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contact","user","user");
-            return connection;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        String sql ="create table if not exists contact_manager " +
+                "(name varchar(15) not null, " +
+                "surname varchar(15), " +
+                "phone varchar(12) unique not null)";
+        jdbcTemplate.update(sql);
     }
 }

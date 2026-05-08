@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ContactService {
@@ -13,8 +14,6 @@ public class ContactService {
     public  void add(Contact contact){
         int result =contactRepository.add(contact);
         if(result==1) System.out.println("Contact saved successfully!");
-        else if(result==ContactRepository.DUPLICATE_PHONE) System.out.println("This phone number is already in your contacts.");
-        else if(result==ContactRepository.NULL_PHONE) System.out.println("Phone number is required.");
         else if(result<1) System.out.println("Failed to add contact due to a technical error.");
     }
 
@@ -30,6 +29,7 @@ public class ContactService {
     }
 
     public void search(String query) {
+        query="%"+query.toLowerCase()+"%";
         List<Contact> list = contactRepository.search(query);
         list.forEach(System.out::println);
     }

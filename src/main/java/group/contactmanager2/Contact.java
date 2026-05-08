@@ -10,6 +10,12 @@ public class Contact {
     private String surname;
     private String phone;
 
+    public Contact(){}
+    public Contact(String name, String surname, String phone){
+        this.name=name;
+        this.surname=surname;
+        this.phone=phone;
+    }
     @Override
     public String toString() {
         return name +" "+  surname + " "+phone;
