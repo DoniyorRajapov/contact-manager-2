@@ -1,18 +1,16 @@
 package group.contactmanager2;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import java.util.Scanner;
 
+@Controller
 public class ContactController {
+    @Autowired
     private ContactService contactService;
+    @Autowired
     private Scanner scanner;
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    public void setContactService(ContactService contactService) {
-        this.contactService = contactService;
-    }
 
     public void start(){
         boolean b=true;
@@ -41,8 +39,11 @@ public class ContactController {
 
     public int action(){
         System.out.print("Enter action: ");
+        String action = scanner.nextLine();
+        if(action==null)
+            return -1;
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(action);
         }
         catch(NumberFormatException e){
             return -1;

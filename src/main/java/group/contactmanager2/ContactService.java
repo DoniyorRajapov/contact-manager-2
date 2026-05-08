@@ -1,13 +1,14 @@
 package group.contactmanager2;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class ContactService {
+    @Autowired
     ContactRepository contactRepository;
-
-    public void setContactRepository(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
-    }
 
     public  void add(Contact contact){
         int result =contactRepository.add(contact);

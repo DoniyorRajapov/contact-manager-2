@@ -1,9 +1,12 @@
 package group.contactmanager2;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ContactRepository{
     public static final int DUPLICATE_PHONE = -23505;
     public static final int NULL_PHONE = -23502;
