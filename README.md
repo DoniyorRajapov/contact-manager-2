@@ -1,1 +1,1 @@
-# contact-manager-2 loyihasi springorqali qilingan
+# contact-manager-2 loyihasi spring orqali qilingan
